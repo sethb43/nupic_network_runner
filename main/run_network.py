@@ -42,6 +42,7 @@ def runNetwork(network, numIterations):
             anomalyScore = .05;
         currTime = datetime.datetime.now()
         output.write([currTime], [.05], [anomalyScore])
+        #print currTime, 0, anomalyScore
 
         predictedColumns = tpNode.getOutputData("topDownOut").nonzero()[0]
         links["prevPredictedColumns"] = copy.deepcopy(predictedColumns)
