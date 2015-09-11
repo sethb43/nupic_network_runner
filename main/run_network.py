@@ -3,6 +3,9 @@ Created on Sep 9, 2015
 
 @author: sbarnard
 '''
+import os
+import sys
+sys.path.append(os.getcwd()+"/..")
 from network import hierarchy_generator as generator
 from conf.network_conf import NETWORK_PARAMS
 from utils import nupic_output
