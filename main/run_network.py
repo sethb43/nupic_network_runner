@@ -27,16 +27,14 @@ def runNetwork(network, numIterations):
             for p in NETWORK_PARAMS["poolers"]:
                 network.regions[p["name"]].setParameter("learningMode", False)
 
-        spNode = network.regions["spTopRegion"]
-        tpNode = network.regions["tpTopRegion"]
+        spNode = network.regions["spReg1"]
+        tpNode = network.regions["tpReg1"]
         
         # The anomaly score is relation of active columns over previous predicted columns
         activeColumns = spNode.getOutputData("bottomUpOut").nonzero()[0]
         anomalyScore = computeRawAnomalyScore(activeColumns, prevPredictedColumns)
 
-        print anomalyScore
         output.write(i, anomalyScore)
-        #print currTime, 0, anomalyScore
 
         predictedColumns = tpNode.getOutputData("topDownOut").nonzero()[0]
         prevPredictedColumns = copy.deepcopy(predictedColumns)
